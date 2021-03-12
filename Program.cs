@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace TwoLinesCompare
+namespace compareMethodForLine
 {
     class Program
     {
-        static void Main(string[] args)
+        public static double CalculateLength()
         {
             Console.WriteLine("Enter the first x1 co-ordinate point: ");
             double x1 = (double)Convert.ToDecimal(Console.ReadLine());
@@ -18,34 +22,32 @@ namespace TwoLinesCompare
             Console.WriteLine("Enter the first y2 co-ordinate point: ");
             double y2 = (double)Convert.ToDecimal(Console.ReadLine());
 
-            double length1 = (double)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+            double length = (double)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
 
+            return length;
+        }
 
-            Console.WriteLine("Enter the first a1 co-ordinate point: ");
-            double a1 = (double)Convert.ToDecimal(Console.ReadLine());
+        public static void CompareToMethod(double length1, double length2)
+        {
+            if (length1 < length2)
+                Console.WriteLine("Line1 " + length1 + " is less than Line2 " + length2);
+            else if (length1 > length2)
+                Console.WriteLine("Line1 " + length1 + " is greater than Line2" + length2);
+            else
+                Console.WriteLine("Lines are equal of length " + length1);
+        }
 
-            Console.WriteLine("Enter the first b1 co-ordinate point: ");
-            double b1 = (double)Convert.ToDecimal(Console.ReadLine());
-
-            Console.WriteLine("Enter the first a2 co-ordinate point: ");
-            double a2 = (double)Convert.ToDecimal(Console.ReadLine());
-
-            Console.WriteLine("Enter the first b2 co-ordinate point: ");
-            double b2 = (double)Convert.ToDecimal(Console.ReadLine());
-
-            double length2 = (double)Math.Sqrt(Math.Pow(a2 - a1, 2) + Math.Pow(b2 - b1, 2));
-
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Coordinate for First Line");
+            double length1 = CalculateLength();
+            Console.WriteLine("Coordinate for Second Line");
+            double length2 = CalculateLength();
 
             Console.WriteLine("Length of the first line is: " + length1);
             Console.WriteLine("Length of the second line is: " + length2);
 
-
-            if (length1 > length2)
-                Console.WriteLine("length1 is Greater");
-            else if (length1 < length2)
-                Console.WriteLine("length1 is Smaller");
-            else
-                Console.WriteLine("Lines are Equal ");
+            CompareToMethod(length1, length2);
 
             Console.ReadKey();
         }
